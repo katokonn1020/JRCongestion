@@ -1,5 +1,4 @@
 package controllers
-
     import javax.inject.Inject
     import model.{Station, StationForm}
     import play.api.libs.json.{JsValue, Json}
@@ -15,25 +14,26 @@ package controllers
     import play.api.libs.json.Json
 
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
-      def index(time: String,week: Int,direction:Int) = Action.async { implicit request =>
+      def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
           val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(2000, MILLISECONDS))
           val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
-          Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time))
+          Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
         }
       }
+
 
       /*
       def stationSelect(time: String,week: Int,direction:Int) = Action.async { implicit request =>
           StationForm.form.bindFromRequest.fold(
             // if any error in submitted data
-            errorForm => Future.successful(Ok(views.html.error())),
+            errorForm:temp => Future.successful(Ok(views.html.error())),
             data => {
               val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(2000, MILLISECONDS))
               val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
               Redirect(routes.ApplicationController.index("0600",3,0))
             })
         }
-        */
+*/
     }
 

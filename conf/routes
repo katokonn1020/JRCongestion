@@ -3,8 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                          controllers.ApplicationController.index(time : String = "0600",week : Int = 2,direction : Int = 0)
-GET     /time/:time/:week/:direction                           controllers.ApplicationController.index(time : String,week : Int,direction : Int)
+GET     /                           controllers.ApplicationController.index(time : String ?="0600", week : Int ?= 2, direction : Int ?= 0)
 # POST    /add                        controllers.ApplicationController.addStation
 # GET     /delete/:id                 controllers.ApplicationController.deleteStation(id : Int)
 
