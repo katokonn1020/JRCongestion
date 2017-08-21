@@ -16,8 +16,8 @@ package controllers
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
       def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
-          //val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(2000, MILLISECONDS))
-          //val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
+          val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(5000, MILLISECONDS))
+          val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
           //Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
           Ok(views.html.index("OK"))
         }
