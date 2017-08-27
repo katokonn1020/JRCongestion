@@ -1,4 +1,4 @@
-@()(content: Html)
+@(time: String,week:Int,direction:Int)(content: Html)
 
 <!DOCTYPE html>
 
@@ -70,6 +70,67 @@
 
 
 </script>
+<!-- Actual scrollspy markup: -->
+<nav id="top-menu" class="navbar navbar-default">
+    <h3 class="navbar-brand">JR混雑度チェッカー</h3>
+    時間：<form name="form" action="/" id="form" method="get">
+    曜日：<select name="week" id ="week" onchange="changeWeek()">
+    <option value=2 @if(week == 2){selected}>月曜日</option>
+    <option value=3 @if(week == 3){selected}>火曜日</option>
+    <option value=4 @if(week == "4"){selected}>水曜日</option>
+    <option value=5 @if(week == 5){selected}>木曜日</option>
+    <option value=6 @if(week == 6){selected}>金曜日</option>
+    <option value=7 @if(week == 7){selected}>土曜日</option>
+    <option value=1 @if(week == 1){selected}>日曜日</option>
+</select></br>
+    <select name="time" onchange="changeTime()">
+        <option value="0600" @if(time == "0600"){selected}>06:00~06:30</option>
+        <option value="0700" @if(time == "0700"){selected}>06:30~07:00</option>
+        <option value="0730" @if(time == "0730"){selected}>07:00~07:30</option>
+        <option value="0800" @if(time == "0800"){selected}>08:00~08:30</option>
+        <option value="0830" @if(time == "0830"){selected}>08:30~09:00</option>
+        <option value="0900" @if(time == "0900"){selected}>09:00~09:30</option>
+        <option value="0930" @if(time == "0900"){selected}>09:30~10:00</option>
+        <option value="1000" @if(time == "1000"){selected}>10:00~10:30</option>
+        <option value="1030" @if(time == "1000"){selected}>10:30~11:00</option>
+        <option value="1100" @if(time == "1100"){selected}>11:00~11:30</option>
+        <option value="1130" @if(time == "1100"){selected}>11:30~12:00</option>
+        <option value="1200" @if(time == "1200"){selected}>12:00~12:30</option>
+        <option value="1230" @if(time == "1200"){selected}>12:30~13:00</option>
+        <option value="1300" @if(time == "1300"){selected}>13:00~13:30</option>
+        <option value="1300" @if(time == "1300"){selected}>13:30~14:00</option>
+        <option value="1400" @if(time == "1400"){selected}>14:00~14:30</option>
+        <option value="1430" @if(time == "1400"){selected}>14:30~15:00</option>
+        <option value="1500" @if(time == "1500"){selected}>15:00~15:30</option>
+        <option value="1530" @if(time == "1500"){selected}>15:30~16:00</option>
+        <option value="1600" @if(time == "1600"){selected}>16:00~16:30</option>
+        <option value="1630" @if(time == "1600"){selected}>16:30~17:00</option>
+        <option value="1700" @if(time == "1700"){selected}>17:00~17:30</option>
+        <option value="1730" @if(time == "1700"){selected}>17:30~18:00</option>
+        <option value="1800" @if(time == "1800"){selected}>18:00~18:30</option>
+        <option value="1830" @if(time == "1800"){selected}>18:30~19:00</option>
+        <option value="1900" @if(time == "1900"){selected}>19:00~19:30</option>
+        <option value="1930" @if(time == "1900"){selected}>19:30~20:00</option>
+        <option value="2000" @if(time == "2000"){selected}>20:00~20:30</option>
+        <option value="2030" @if(time == "2000"){selected}>20:30~21:00</option>
+        <option value="2100" @if(time == "2100"){selected}>21:00~21:30</option>
+        <option value="2130" @if(time == "2100"){selected}>21:30~22:00</option>
+        <option value="2200" @if(time == "2200"){selected}>22:00~22:30</option>
+        <option value="2230" @if(time == "2200"){selected}>22:30~23:00</option>
+        <option value="2300" @if(time == "2300"){selected}>23:00~23:30</option>
+        <option value="2330" @if(time == "2300"){selected}>23:30~00:00</option>
+        <option value="0000" @if(time == "0000"){selected}>00:00~00:30</option>
+        <option value="0030" @if(time == "0030"){selected}>00:30~01:00</option>
+        <option value="0100" @if(time == "0100"){selected}>01:00~01:30</option>
+        </select>
+        <select name="direction">
+        <option value=0 @if(direction == 0){selected}>外回り</option>
+        <option value=1 @if(direction == 1){selected}>内回り</option>
+        </select>
+
+
+    <button type='submit' name='action' value='send'>送信</button>
+    </form>
 </nav>
 <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
     <!-- Contact Section -->
