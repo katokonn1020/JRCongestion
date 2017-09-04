@@ -17,7 +17,7 @@ package controllers
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
       def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
-          def dirList = Process(Seq("sh", "-c", "curl -x 202.21.114.139:53281 -L \"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?at=1654&accessTime=1230&accessDayCd=7&direction=0&_=1499399710095\"")).lines.toList.toString()
+          def dirList = Process(Seq("sh", "-c", "curl -x 160.16.119.186:8118 -L \"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?at=1654&accessTime=1230&accessDayCd=7&direction=0&_=1499399710095\"")).lines.toList.toString()
           val response: WSResponse = Await.result(WS.url(s"http://taruo.net/e/").get(), Duration(2000, MILLISECONDS))
           //val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
           Ok(views.html.index(dirList))
