@@ -1,22 +1,4 @@
-@(trainFeedBack:List[play.api.libs.json.JsValue], stationForm: Form[model.StationFormData],temp : Seq[model.Station], time : String, week:Int ,direction:Int )(implicit request: RequestHeader)
-@main(time,week,direction) {
-<table border=1>
-    <tr><td></td>@for(i<- 1 to 11){<td>@i 号車</td>}</tr>
-    @for(j<- 0 until trainFeedBack.length ){
-    <tr>
-        <td>@temp.find(_.id == (trainFeedBack(j).\("stationId").get.toString().toInt)).get.name</td>
-        <td>@(trainFeedBack(j).\("carNo1").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo2").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo3").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo4").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo5").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo6").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo7").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo8").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo9").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo10").get.toString())</td>
-        <td>@(trainFeedBack(j).\("carNo11").get.toString())</td>
-    </tr>
-    }
-</table>
+@(response:String )(implicit request: RequestHeader)
+@main() {
+@response
 }

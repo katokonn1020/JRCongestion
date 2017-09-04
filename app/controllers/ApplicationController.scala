@@ -12,13 +12,16 @@ package controllers
     import ExecutionContext.Implicits.global
     import scala.concurrent.duration.{Duration, MILLISECONDS}
     import play.api.libs.json.Json
+    import scala.sys.process._
 
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
       def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
-          val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(2000, MILLISECONDS))
-          val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
-          Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
+          def dirList = Process(Seq("sh", "-c", "curl -x 202.21.114.139:53281 -L \"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?at=1654&accessTime=1230&accessDayCd=7&direction=0&_=1499399710095\"")).lines.toList.toString()
+          val response: WSResponse = Await.result(WS.url(s"http://taruo.net/e/").get(), Duration(2000, MILLISECONDS))
+          //val trainCongestions = (Json.parse(response.body) \ "trainFeedbackList").as[List[JsValue]]
+          Ok(views.html.index(dirList))
+          //Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
         }
       }
 
