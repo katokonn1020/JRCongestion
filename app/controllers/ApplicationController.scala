@@ -15,10 +15,10 @@ package controllers
     import scala.sys.process._
 
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
-      /*
+
       def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
-          val processString = s"curl -x 160.16.119.186:8118 -L https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction"
+          val processString = s"curl -x 195.222.68.23:3128 -L https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction"
           def dirList = Process(Seq("sh", "-c", processString)).lines.mkString
           Thread.sleep(3000)
           val trainCongestions = (Json.parse(dirList) \ "trainFeedbackList").as[List[JsValue]]
@@ -26,7 +26,7 @@ package controllers
           //Ok(views.html.index(dirList))
         }
       }
-      */
+      /*
       def index(time: String ,week: Int,direction:Int) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
           val response: WSResponse = Await.result(WS.url(s"https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction").get(), Duration(2000, MILLISECONDS))
@@ -34,5 +34,6 @@ package controllers
           Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
         }
       }
+      */
     }
 
