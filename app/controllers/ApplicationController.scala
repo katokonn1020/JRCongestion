@@ -21,9 +21,9 @@ package controllers
           val processString = s"curl -x 195.222.68.23:3128 -L https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction"
           def dirList = Process(Seq("sh", "-c", processString)).lines.mkString
           Thread.sleep(3000)
-          val trainCongestions = (Json.parse(dirList) \ "trainFeedbackList").as[List[JsValue]]
-          Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
-          //Ok(views.html.index(dirList))
+          //val trainCongestions = (Json.parse(dirList) \ "trainFeedbackList").as[List[JsValue]]
+          //Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
+          Ok(views.html.index("te"))
         }
       }
       /*
