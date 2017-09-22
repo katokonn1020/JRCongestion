@@ -116,20 +116,20 @@
   <div class="form-group">
     <label for="week">曜日</label>
     <select name="week" id ="week" class="form-control" id="week" placeholder="月曜日">
-    <option value=2 @if(week == 2){selected}>月曜日</option>
-    <option value=3 @if(week == 3){selected}>火曜日</option>
-    <option value=4 @if(week == 4){selected}>水曜日</option>
-    <option value=5 @if(week == 5){selected}>木曜日</option>
-    <option value=6 @if(week == 6){selected}>金曜日</option>
-    <option value=7 @if(week == 7){selected}>土曜日</option>
-    <option value=1 @if(week == 1){selected}>日曜日</option>
+    <option value=2 @if(week == "2"){selected}>月曜日</option>
+    <option value=3 @if(week == "3"){selected}>火曜日</option>
+    <option value=4 @if(week == "4"){selected}>水曜日</option>
+    <option value=5 @if(week == "5"){selected}>木曜日</option>
+    <option value=6 @if(week == "6"){selected}>金曜日</option>
+    <option value=7 @if(week == "7"){selected}>土曜日</option>
+    <option value=1 @if(week == "1"){selected}>日曜日</option>
 </select>
   </div>
     <div class="form-group">
     <label for="direction">方向</label>
     <select name="direction" id ="direction" class="form-control" id="direction" placeholder="内回り">
-        <option value=0 @if(direction == 0){selected}>外回り</option>
-        <option value=1 @if(direction == 1){selected}>内回り</option>
+        <option value=0 @if(direction == "0"){selected}>外回り</option>
+        <option value=1 @if(direction == "1"){selected}>内回り</option>
         </select>
   </div>
   <button type="submit" class="btn btn-success btn-lg">調べる</button>
