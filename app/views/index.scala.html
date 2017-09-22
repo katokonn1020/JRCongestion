@@ -1,4 +1,4 @@
-@(trainFeedBack:List[play.api.libs.json.JsValue], stationForm: Form[model.StationFormData],temp : Seq[model.Station], time : String, week:Int ,direction:Int )(implicit request: RequestHeader)
+@(trainFeedBack:List[play.api.libs.json.JsValue], stationForm: Form[model.StationFormData],temp : Seq[model.Station], time : String, week:String ,direction:String)(implicit request: RequestHeader)
 @main(time,week,direction) {
 <table border=1>
     <tr><td></td>@for(i<- 1 to 11){<td>@i 号車</td>}</tr>
