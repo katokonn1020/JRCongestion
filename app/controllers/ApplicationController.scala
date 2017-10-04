@@ -13,7 +13,7 @@ package controllers
     class ApplicationController @Inject()(WS: WSClient) extends Controller {
       def index(time: String ,week: String,direction:String) = Action.async { implicit request =>
         StationService.listAllStations map { stations =>
-          val processString = s"""curl -x 115.36.15.26:3128 -L "https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction""""
+          val processString = s"""curl -x 61.6.21.173:808 -L "https://rp.cloudrail.jp/tw02/jreast_app/fb/feedback/feedback/?accessTime=$time&accessDayCd=$week&direction=$direction""""
           def dirList = Process(Seq("sh", "-c", processString)).lines.mkString
           val trainCongestions = (Json.parse(dirList) \ "trainFeedbackList").as[List[JsValue]]
           Ok(views.html.index(trainCongestions, StationForm.form,  stations,  time, week, direction))
